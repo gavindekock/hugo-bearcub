@@ -3,7 +3,7 @@
 {{ $fg := resources.Get "images/social_card_fg.png"}}
 {{ $bg := resources.Get "images/social_card_bg.png"}}
 
-{{ if gt (len .Title) 45 }}
+{{ if gt (len .Title) 40 }}
   {{ $fg = $fg.Filter (images.Text .Title (dict
     "font" $font
     "color" "#fafafa"
@@ -24,7 +24,7 @@
 {{ end }}
 
 {{ $date := .Date.Format (default "2006-01-02" .Site.Params.dateFormat) }}
-{{ $author := (default $.Site.Params.author.name ($.Param "author") ) }}
+{{ $author := ($.Site.Params.author.name) }}
 {{ $byline := (printf "%s | %s" $author $date) }}
 
 {{ $fg = $fg.Filter (images.Text $byline (dict
